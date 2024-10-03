@@ -49,23 +49,37 @@
             <label for="">Estado</label>
             <input input type="text" id="estado" class="form-control">
             </div>
-                <label for="">Email</label>
-                <input input type="text" id="cep" class="form-control"><br>
             <div class="row">
-                <label for="">senha</label>
-                <input input type="text" id="cep" class="form-control"><br>
+                <label for="">Nome</label>
+                <!-- ESSA DIV É FEITA PARA APARECER O NUMERO-->
+                <input input type="text" id="nome" class="form-control">
+                    </div>  
+            <div  id ="email" class="row">
+                <label for="">email</label>
+                <!-- ESSA DIV É FEITA PARA APARECER O NUMERO-->
+                <input type="text" name="email" onblur=checarEmail()>  
+                </div>  
+                <form action="" id="cpfForm">
             <div class="row">
                 <label for="">cpf</label>
-                <input input type="text" id="cep" class="form-control"><br>
+                <!-- ESSA DIV É FEITA PARA APARECER O NUMERO-->
+                <input input type="text" id="cpf" name="cpf" class="form-control">
+            </div>  
+                </form>
             <div class="row">
                 <label for="">Data de nascimento</label>
-                <input input type="text" id="cep" class="form-control"><br>
-            <div class="row">
-        
+                <!-- ESSA DIV É FEITA PARA APARECER O NUMERO-->
+                <input input type="text" id="data" class="form-control">
+            </div>  
+             <div class="row">
+                <label for="">Senha</label>
+                <!-- ESSA DIV É FEITA PARA APARECER O NUMERO-->
+                <input input type="text" id="senha" class="form-control">
+            </div>  
         </div>
         <br>
-        
-            <button type="button" onclick="" class="btn btn-warning">entrar</button>
+        <p id="message"></p>
+            <button type="button" onclick="" class="btn btn-warning" value="ENVIAR">Entrar</button>
         </form>
     </div>
     <script src='main.js'></script>
