@@ -128,8 +128,8 @@ function checarEmail(){
         alert("Por favor, informe um e-mail valido");
         return false;
     }else{
-        
-        document.getElementById('email').innerHTML = document.forms[0].email.value;
+
+       
        alert("Email confirmado");
        
     }
