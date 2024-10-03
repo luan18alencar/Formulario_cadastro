@@ -57,19 +57,7 @@ const pesquisarCep =async() => {
 document.getElementById('cep').addEventListener('focusout', pesquisarCep);
 
 
-function checarEmail(){
-    if(document.forms[0].email.value == "" ||
-        document.forms[0].email.value.indexOf('@') == -1||
-        document.forms[0].email.value.indexOf('') == -1){
-        alert("Por favor, informe um e-mail valido");
-        return false;
-    }else{
-        document.getElementById('email').innerHTML = document.forms[0].email.value;
-       alert("Email confirmado");
-       
-    }
-    }
-     
+
 // VALIDAÇÃO DE CPF DIRETO NO JAVASCRIPT
  
 // Adicionando escutador ao formulário
@@ -133,5 +121,19 @@ function validarCPF(cpf){
     return true;
 }
     
+function checarEmail(){
+    if(document.forms[0].email.value == "" ||
+        document.forms[0].email.value.indexOf('@') == -1||
+        document.forms[0].email.value.indexOf('') == -1){
+        alert("Por favor, informe um e-mail valido");
+        return false;
+    }else{
+        
+        document.getElementById('email').innerHTML = document.forms[0].email.value;
+       alert("Email confirmado");
+       
+    }
+    }
+     
 
 
