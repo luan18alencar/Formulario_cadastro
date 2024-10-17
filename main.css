@@ -1,0 +1,93 @@
+/* style.css */
+
+/* Variáveis CSS */
+:root {
+    --primary-color: #FF69B4; /* Pink vibrante */
+    --secondary-color: #009688; /* Verde água */
+    --font-family: 'Comic Sans MS', cursive; /* Fonte com estilo cartoon */
+    --border-radius: 10px;
+  }
+  
+  /* Estilos gerais */
+  body {
+    font-family: var(--font-family);
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  #container {
+    background-color:   
+   #fff;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+  }
+  
+  /* Formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Inputs */
+  .input-field {
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    border-radius: var(--border-radius);
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: none;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Botão */
+  button {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 15px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+  }
+  
+  /* Efeitos de hover */
+  input:focus,
+  button:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+  
+  /* Tema escuro */
+  .dark-mode {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    #container {
+      padding: 20px;
+    }
+  }
+
+div#inputs{
+    padding:30px;
+
+}
