@@ -1,139 +1,190 @@
-'use strict'; //ativa o modo restrito
-// codigo para consumo de API da via cep
-//https://viacep.com.br/
+document.addEventListener('DOMContentLoaded', () => {
+    const mode = document.getElementById('mode_icon');
+    const form = document.getElementById('login_form');
  
- 
-// LIMPAR CONSULTA DO FORM JA REALIZADO
- 
-const limparFormlario = () =>{
-    //ESSA FUNÇÃO FAZ A LIMPEZA DOS CAMPOS
-    document.getElementById('rua').value = '';
-    document.getElementById('cidade').value = '';
-    document.getElementById('bairro').value = '';
-    document.getElementById('estado').value = '';
-}
- 
-//Função para preencher campos relacionados ao CEP
-const preencherFormulario = (endereco) =>{
-    document.getElementById('rua').value = endereco.logradouro;
-    //coloca o valor de logradouro da API dentro do campo rua do formulário
-    document.getElementById('bairro').value = endereco.bairro;
-    //coloca o valor de Bairro da API dentro do campo bairro do formulário
-    document.getElementById('cidade').value = endereco.localidade;
-    //coloca o valor de localidade da API dentro do campo cidade do formulário
-    document.getElementById('estado').value = endereco.uf;
-    //coloca o valor de uf da API dentro do campo estado do formulário
-}
- 
-// VERIFICA SE O CEP É VÁLIDO
-// faz uma expreção regular para verificar se apenas foram digitados números
-const eNumero = (numero) => /^[0-9]+$/.test(numero);
-// O código está pegando o número do CEP que o usuário digitou em um campo específico da página e verificando se ele tem o tamanho correto (8 dígitos). Se o CEP tiver mais ou menos que 8 dígitos, o código provavelmente irá mostrar uma mensagem de erro para o usuário, informando que o CEP está inválido.
-const cepValido = (cep) => cep.length == 8 && eNumero(cep);
- 
- 
-const pesquisarCep =async() => {
-        //COM ESSE CÓDIGO "ASYNC" DEIXA O CÓDIGO SÍNCRONO, UM CÓDIGO SÍNCONO, UM CÓDIGO SÍNCRONO É AQUELE QUE OCORRE EM SEQUÊNCIA, UMA INSTRUÇÃO APÓS A OUTRA.
-    limparFormlario();
-    const url = `https://viacep.com.br/ws/${cep.value}/json/`; //está criando uma constante chamada url para armazenar o endereço da API do ViaCEP. A parte cep.value indica que o valor do CEP digitado pelo usuário será inserido nessa URL, permitindo que a API busque as informações específicas para aquele CEP.
-    if(cepValido(cep.value)){
-        const dados = await fetch(url);
-            // Imagine que você está fazendo um pedido em um restaurante. Você faz o pedido (a requisição) e espera o garçom trazer o prato (a resposta). O await é como se você falasse para o garçom: "Só continue com as outras tarefas quando o meu pedido estiver pronto".
-        const addres = await dados.json();
-            // Imagine que você fez um pedido de comida em um restaurante e o garçom te entrega um pacote fechado. Você precisa abrir esse pacote (o equivalente a transformar a resposta da API em um formato que você possa entender) para ver o que tem dentro (os dados do endereço).
-    if(addres.hasOwnProperty('erro')){
-        // Imagine que você pediu informações sobre um produto em uma loja online. A loja te envia uma resposta, mas essa resposta pode indicar que o produto está indisponível ou que houve algum problema com a sua solicitação.
-        alert('CEP não encontado')  
-    }
-    else{
-        // Se não houver erro, o formulário é preenchido com os dados do endereço
-        preencherFormulario(addres);
-    }
-}else{
-        alert('CEP incorreto')
-    }
-    }
-// Executa a ação de preenchimento do formulário ao deixar o campo CEP
-document.getElementById('cep').addEventListener('focusout', pesquisarCep);
-
-
-
-// VALIDAÇÃO DE CPF DIRETO NO JAVASCRIPT
- 
-// Adicionando escutador ao formulário
-document.getElementById('cpfForm').addEventListener('submit', function(event){
-    event.preventDefault();
- 
-    const cpf = document.getElementById('cpf').value;
-    const msg = document.getElementById('message');
- 
-    if(validarCPF(cpf)){
-        msg.textContent = 'O CPF é válido!';
-        msg.style.color = 'green';
-    }else{
-        msg.textContent = 'O CPF é inválido!';
-        msg.style.color = 'red';
-    }
-}
-);
- 
-function validarCPF(cpf){
-    cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
- 
-    // Estrutura de decisão para verificar quantidade de dígitos e se todos os digitos são iguais
-    if(cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)){
-        return false;
-    }
-   
-    let soma = 0;
-    let resto;
- 
-    // Validando o primeiro digito verificador
-    for(let i=1;i <= 9;i++){
-        soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
-    }
- 
-    resto = (soma * 10) % 11;
- 
-    if((resto === 10) || (resto === 11)){
-        resto = 0;
-    }
-    if(resto !== parseInt(cpf.substring(9, 10))){
-        return false;
-    }
- 
-    soma = 0;
-    // Validando o segundo digito verificador
-    for(let i = 1; i <= 10; i++){
-        soma += parseInt(cpf.substring(i-1, i) * (12 - i));
-    }
- 
-    resto = (soma * 10) % 11;
- 
-    if((resto === 10) || (resto === 11)){
-        resto = 0;
-    }
-   
-    if(resto !== parseInt(cpf.substring(10, 11))){
-        return false;
-    }
- 
-    return true;
-}
+    // Alterna entre modo claro e escuro
     
-function checarEmail(){
-    if(document.forms[0].email.value == "" ||
-        document.forms[0].email.value.indexOf('@') == -1||
-        document.forms[0].email.value.indexOf('') == -1){
-        alert("Por favor, informe um e-mail valido");
-        return false;
-    }else{
-
-       
-       alert("Email confirmado");
-       
+ 
+    // Seleciona os elementos do formulário
+    const emailInput = document.getElementById('Email');
+    const passwordInput = document.getElementById('password');
+    const nameInput = document.getElementById('name');
+    const CPFInput = document.getElementById('CPF');
+    const data_nasInput = document.getElementById('data_nas');
+    const CEPInput = document.getElementById('CEP');
+    const ruaInput = document.getElementById('rua');
+    const numeroInput = document.getElementById('numero');
+    const bairroInput = document.getElementById('bairro');
+    const complementoInput = document.getElementById('complemento');
+    const cidadeInput = document.getElementById('cidade');
+    const estadoInput = document.getElementById('estado');
+ 
+    const loginForm = document.getElementById('login_form');
+ 
+    // Validação de preenchimento de campos, CPF e E-mail
+    loginForm.addEventListener('submit', (event) => {
+        // Verifica se todos os campos obrigatórios estão preenchidos
+        const requiredFields = [emailInput, passwordInput, nameInput, CPFInput, data_nasInput, CEPInput, ruaInput, numeroInput, bairroInput, cidadeInput, estadoInput];
+        for (let field of requiredFields) {
+            if (field.value.trim() === '') {
+                event.preventDefault();
+                Swal.fire({
+                    icon: "info",
+                    title: "Oops...",
+                    text: "Por favor preencha todos os campos",
+                  });
+                field.focus();
+                return;
+            }
+        }
+ 
+        // Verificação de E-mail válido
+        if (!checarEmail(emailInput)) {
+            event.preventDefault();
+            return; // Impede o envio do formulário caso o e-mail seja inválido
+        }
+ 
+        // Verificação de CPF válido
+        if (!validarCPF(CPFInput.value)) {
+            event.preventDefault();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "CPF inválido!",
+              });
+            CPFInput.focus();
+        }
+    });
+ 
+    // Função de validação de CPF
+    function validarCPF(cpf) {
+        // Remove caracteres não numéricos
+        cpf = cpf.replace(/[^\d]+/g, '');
+ 
+        if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+            return false;
+        }
+ 
+        let soma = 0;
+        let resto;
+ 
+        // Valida o primeiro dígito verificador
+        for (let i = 1; i <= 9; i++) {
+            soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+        }
+ 
+        resto = (soma * 10) % 11;
+ 
+        if (resto === 10 || resto === 11) {
+            resto = 0;
+        }
+ 
+        if (resto !== parseInt(cpf.substring(9, 10))) {
+            return false;
+        }
+ 
+        soma = 0;
+ 
+        // Valida o segundo dígito verificador
+        for (let i = 1; i <= 10; i++) {
+            soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+        }
+ 
+        resto = (soma * 10) % 11;
+ 
+        if (resto === 10 || resto === 11) {
+            resto = 0;
+        }
+ 
+        if (resto !== parseInt(cpf.substring(10, 11))) {
+            return false;
+        }
+ 
+        return true;
     }
+ 
+    // Verifica o formato do e-mail
+    function checarEmail(emailInput) {
+        const emailValue = emailInput.value.trim();
+       
+        // Expressão regular para validar o formato do e-mail
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
+        // Verifica se o e-mail está vazio ou no formato inválido
+        if (!emailRegex.test(emailValue)) {
+            Swal.fire({
+                icon: "info",
+                title: "Oops...",
+                text: "Por favor informe um email válido",
+              });
+            emailInput.focus(); // Coloca o foco no campo de e-mail
+            return false;
+        } else {
+            return true;
+        }
     }
-     
+ 
+    // Função de autopreenchimento
+    const preencherFormulario = (endereco) => {
+        document.getElementById('rua').value = endereco.logradouro || '';
+        document.getElementById('bairro').value = endereco.bairro || '';
+        document.getElementById('cidade').value = endereco.localidade || '';
+        document.getElementById('estado').value = endereco.uf || '';
+    }
+ 
+    // Função para limpar os campos de endereço
+    const limparFormulario = () => {
+        document.getElementById('rua').value = '';
+        document.getElementById('bairro').value = '';
+        document.getElementById('cidade').value = '';
+        document.getElementById('estado').value = '';
+    }
+ 
+    // Verifica se o CEP é válido
+    const eNumero = (numero) => /^[0-9]+$/.test(numero);
+    const cepValido = (CEP) => CEP.length === 8 && eNumero(CEP);
+ 
+    const pesquisarCep = async () => {
+        const cep = CEPInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        if (cepValido(cep)) {
+            limparFormulario();
+            const url = `https://viacep.com.br/ws/${cep}/json/`; // URL da API do ViaCEP com o CEP inserido
+ 
+            try {
+                const dados = await fetch(url);
+                if (!dados.ok) {
+                    throw new Error('Erro ao buscar o CEP.');
+                }
+ 
+                const address = await dados.json();
+ 
+                if (address.erro) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Oops...",
+                        text: "CEP não encontrado!",
+                      });
+                    limparFormulario();
+                } else {
+                    preencherFormulario(address);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Ocorreu um erro ao buscar o CEP. Por favor, tente novamente.');
+            }
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Digite um CEP de 8 dígitos",
+              });
+            limparFormulario();
+        }
+    }
+ 
+    // Executa a ação de preenchimento do formulário ao deixar o campo CEP
+    CEPInput.addEventListener('focusout', pesquisarCep);
+  });
 
 
+ 
