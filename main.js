@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const mode = document.getElementById('mode_icon');
+
     const form = document.getElementById('login_form');
  
     // Alterna entre modo claro e escuro

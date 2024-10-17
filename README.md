@@ -23,22 +23,20 @@
 ## Funções:
 
 
+![imagem](img/funcao1.png)
 
+**##### document.addEventListener('DOMContentLoaded', () => { ... }):**
+ Esta linha anexa um ouvinte de evento ao objeto document, que é o elemento raiz do documento HTML.
 
-## document.addEventListener('DOMContentLoaded', () => { ... }):
+**##### const form = document.getElementById('login_form');:** 
+ Similar à linha anterior, esta cria uma variável constante chamada form e atribui a ela o valor do elemento HTML com o ID login_form.
 
-    Esta linha anexa um ouvinte de evento ao objeto document, que é o elemento raiz do documento HTML.
+![imagem2](funcao2.png)
+**##### getElementById**
 
-## const mode = document.getElementById('mode_icon');:
+    
 
-    Esta linha cria uma variável constante chamada mode e atribui a ela o valor do elemento HTML com o ID mode_icon.
-
-##  const form = document.getElementById('login_form');:
-
-    Similar à linha anterior, esta cria uma variável constante chamada form e
-
-
-
+![imagem](img/funcao3.png)
 
 
 ## Tecnologias utilizadas:
